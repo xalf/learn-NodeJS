@@ -2,6 +2,9 @@ var http = require('http');
 var fs = require('fs');
 var url = require('url');
 var path = require('path');
+var user = require('./user');
+require('./fabrica')("я вызвала фабрику");
+
 var mimeTypes = {
 	'.js': 'text/javascript',
 	'.html': 'text/html',
@@ -21,7 +24,10 @@ http.createServer(function(req,res){
 		pathname = '/index.html';
 	pathname = pathname.substring(1, pathname.length);
 	
+	var pety = new user.User("pety");
+	pety.sayHello();
 	console.log(extname);
+	
 	
 	if(extname == '.gif' || extname == '.jpg' || extname == '.png'){
 		var img = fs.readFileSync('./' + pathname);
